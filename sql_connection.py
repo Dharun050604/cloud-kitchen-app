@@ -1,25 +1,15 @@
-import os
 import mysql.connector
 
-def get_sql_connection():
-    print("========== DB ENV CHECK ==========", flush=True)
-    MYSQLHOST = os.environ.get("DB_HOST")
-    MYSQLUSER = os.environ.get("DB_USER")
-    MYSQLPASSWORD = os.environ.get("DB_PASS")
-    MYSQLDATABASE = os.environ.get("DB_NAME")
-    MYSQLPORT = int(os.environ.get("DB_PORT", 3306))
-    print(f"MYSQLHOST = {MYSQLHOST}", flush=True)
-    print(f"MYSQLUSER = {MYSQLUSER}", flush=True)
-    print(f"MYSQLPASSWORD = {MYSQLPASSWORD}", flush=True)
-    print(f"MYSQLDATABASE = {MYSQLDATABASE}", flush=True)
-    print(f"MYSQLPORT = {MYSQLPORT}", flush=True)
-    print("===================================", flush=True)
+__cnx = None
 
-    connection = mysql.connector.connect(
-        host=MYSQLHOST,
-        user=MYSQLUSER,
-        password=MYSQLPASSWORD,
-        database=MYSQLDATABASE,
-        port=MYSQLPORT
-    )
-    return connection
+def get_sql_connection():
+    global __cnx
+    if __cnx is None:
+        __cnx = mysql.connector.connect(
+            host='hopper.proxy.rlwy.net',
+            port=29274,
+            user='root',
+            password='EXxXILiQvZRlAbUGuyxLvyHvpwFyzTiX',
+            database='railway'
+        )
+    return __cnx

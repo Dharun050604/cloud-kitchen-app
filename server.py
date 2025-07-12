@@ -59,10 +59,5 @@ def get_order_details():
     return jsonify(order_details)
 
 if __name__ == '__main__':
-    from waitress import serve
-    import os
-
-    port = int(os.environ.get('PORT', 5000))
-    print(f"Server started for Cloud Kitchen App on port {port}")
-    serve(app, host='0.0.0.0', port=port)
-
+    print("Server started for Cloud Kitchen App on port 5000")
+    app.run(debug=True, port=5000)
