@@ -1,10 +1,12 @@
 import os
+import mysql.connector
 
 def get_sql_connection():
-    print("==== PRINTING ALL ENVIRONMENT VARIABLES ====", flush=True)
-    for key, value in os.environ.items():
-        print(f"{key} = {value}", flush=True)
-    print("============================================", flush=True)
-
-    # No actual DB connect, just dummy return for now
-    return None
+    connection = mysql.connector.connect(
+        host=os.environ.get('MYSQLHOST', 'localhost'),
+        user=os.environ.get('MYSQLUSER', 'root'),
+        password=os.environ.get('MYSQLPASSWORD', ''),
+        database=os.environ.get('MYSQLDATABASE', ''),
+        port=int(os.environ.get('MYSQLPORT', 3306))
+    )
+    return connection
