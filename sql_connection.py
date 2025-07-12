@@ -1,16 +1,11 @@
 import mysql.connector
 import os
+import sys
 
 __cnx = None
 
 def get_sql_connection():
     global __cnx
-
-    # DEBUG: Print all environment variables
-    print("=== ENVIRONMENT VARIABLES DUMP ===")
-    for key, value in os.environ.items():
-        print(f"{key} = {value}")
-    print("=== END DUMP ===")
 
     # Fetch expected variables
     db_host = os.environ.get('DB_HOST')
@@ -19,13 +14,19 @@ def get_sql_connection():
     db_pass = os.environ.get('DB_PASS')
     db_name = os.environ.get('DB_NAME')
 
-    print("\nConnecting to DB with:")
-    print(f"HOST: {db_host}")
-    print(f"PORT: {db_port}")
-    print(f"USER: {db_user}")
-    print(f"NAME: {db_name}")
+    print("Connecting to DB with:", flush=True)
+    print(f"HOST: {db_host}", flush=True)
+    print(f"PORT: {db_port}", flush=True)
+    print(f"USER: {db_user}", flush=True)
+    print(f"NAME: {db_name}", flush=True)
 
-    # Check if any missing
+    # Debug: dump all env keys to verify what's actually there
+    print("\n--- ALL ENV KEYS ---", flush=True)
+    for key in os.environ.keys():
+        print(key, flush=True)
+    print("--- END ENV KEYS ---\n", flush=True)
+
+    # Check if any are missing
     if None in [db_host, db_port, db_user, db_pass, db_name]:
         raise Exception("Missing required environment variables")
 
