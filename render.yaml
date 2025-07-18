@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: cloud-kitchen-api
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: waitress-serve --port $PORT --call server:app
-    plan: free
