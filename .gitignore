@@ -1,4 +1,4 @@
-# Byte-compiled / optimized / DLL files
+# Python cache
 __pycache__/
 *.py[cod]
 *$py.class
@@ -11,8 +11,9 @@ ENV/
 env.bak/
 venv.bak/
 
-# Pipenv
+# Pipenv / Poetry
 Pipfile.lock
+poetry.lock
 
 # Distribution / packaging
 .Python
@@ -36,22 +37,29 @@ instance/
 *.db
 *.sqlite3
 
-# VSCode
-.vscode/
+# Database dumps (optional — if you don't want to track .sql files)
+# *.sql
 
-# Pytest
-.cache
+# VSCode / IDEs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Pytest / Coverage
+.cache/
 .pytest_cache/
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
 
 # Logs
 *.log
 
-# dotenv
+# dotenv / secrets
 .env
 *.env
-
-# MySQL dump
-*.sql
 
 # macOS
 .DS_Store
@@ -60,3 +68,8 @@ instance/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# Node / frontend (if using npm in ui/)
+node_modules/
+ui/node_modules/
+*.lock
